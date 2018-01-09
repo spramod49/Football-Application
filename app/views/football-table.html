@@ -1,8 +1,11 @@
 <div class="container" style="border: red 1px solid;">
   <h1>Matches</h1>
+  <p>{{ft.selectedMatchday}}</p>
+  <p>{{ft.results[0]}}</p>
   <select name="year" id="year" ng-model="ft.selectedYear" ng-options="year for year in ft.years">
   </select>
-  <select name="matchday" id="matchday" ng-options="matchday for matchday in ft.matchdays" ng-model="ft.selectedMatchday">
+  <select name="matchday" id="matchday" ng-options="matchday for matchday in ft.matchdays" ng-model="ft.selectedMatchday" ng-init="ft.updateMatchday()"
+    ng-change="ft.updateMatchday()">
   </select>
   <table class="table table-responsive">
     <thead>
@@ -18,13 +21,12 @@
         <td>
           <strong>1</strong>
         </td>
-        <td>manchester united</td>
+        <td>{{ft.homeTeam}}</td>
         <td>
-          <strong>32 - 0</strong>
+          <strong>{{ft.score}}</strong>
         </td>
-        <td>chelsea</td>
+        <td>{{ft.awayTeam}}</td>
       </tr>
-      <tr></tr>
     </tbody>
     <tbody></tbody>
   </table>
