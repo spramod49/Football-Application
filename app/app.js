@@ -18,14 +18,22 @@ const app = angular
 
     const teamwiseRoute = {
       controller: "teamwiseResults as tr",
-      templateUrl: "team-results.html"
+      templateUrl: "app/views/team-results.html",
+      resolve: {
+        yearFifteenData: function (footballData) {
+          return footballData.getyearFifteenData();
+        },
+        yearSixteenData: function (footballData) {
+          return footballData.getyearSixteenData();
+        }
+      }
     };
 
     $routeProvider
       .when("/matchday", matchdayRoute)
       .when("/teamwise", teamwiseRoute)
-      .otherwise("/matchday", {
-        templateUrl: "football-table.html"
+      .otherwise("/", {
+        templateUrl: "index.html"
       });
   });
 
@@ -67,4 +75,30 @@ function footballTable(yearFifteenData, yearSixteenData) {
   };
 }
 
+function teamwiseResults(yearFifteenData,yearSixteenData) {
+  this.yearFifteenTeams = [];
+  this.yearSixteenTeams = [];
+  this.init = function() {
+    for (
+      let index = 0;
+      index < yearFifteenData.rounds[0].matches.length;
+      index++
+    ) {
+      this.yearFifteenTeams.push(
+        yearFifteenData.rounds[0].matches[index].team1.name
+      );
+      this.yearFifteenTeams.push(
+        yearFifteenData.rounds[0].matches[index].team2.name
+      );
+      this.yearSixteenTeams.push(
+        yearSixteenData.rounds[0].matches[index].team1.name
+      );
+      this.yearSixteenTeams.push(
+        yearSixteenData.rounds[0].matches[index].team2.name
+      );
+    }  
+  };
+}
+
 app.controller("footballTable", footballTable);
+app.controller("teamwiseResults",teamwiseResults);
