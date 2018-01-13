@@ -1,31 +1,25 @@
-<div class="container" style="border: red 1px solid;">
+<div ng-init="ft.init();" class="container">
   <h1>Matches</h1>
-  <p>{{ft.selectedMatchday}}</p>
-  <p>{{ft.results[0]}}</p>
-  <select name="year" id="year" ng-model="ft.selectedYear" ng-options="year for year in ft.years">
+  <select ng-change="ft.updateTable()" name="year" id="year" ng-model="ft.selectedYear" ng-options="year for year in ft.years">
   </select>
-  <select name="matchday" id="matchday" ng-options="matchday for matchday in ft.matchdays" ng-model="ft.selectedMatchday" ng-init="ft.updateMatchday()"
-    ng-change="ft.updateMatchday()">
+  <select name="matchday" id="matchday" ng-options="matchday for matchday in ft.matchdays" ng-model="ft.selectedMatchday"
+    ng-change="ft.updateTable();">
   </select>
   <table class="table table-responsive">
     <thead>
       <tr>
-        <th>Sl. No</th>
         <th>Home team</th>
         <th>Score</th>
         <th>Away team</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
+      <tr ng-repeat="result in ft.results.matches">
+        <td>{{result.team1.name}}</td>
         <td>
-          <strong>1</strong>
+          <strong>{{result.score1}} - {{result.score2}}</strong>
         </td>
-        <td>{{ft.homeTeam}}</td>
-        <td>
-          <strong>{{ft.score}}</strong>
-        </td>
-        <td>{{ft.awayTeam}}</td>
+        <td>{{result.team2.name}}</td>
       </tr>
     </tbody>
     <tbody></tbody>

@@ -17,8 +17,8 @@ const app = angular
     };
 
     const teamwiseRoute = {
-      controller: "teamwiseResults",
-      templateUrl: "teamwise.html"
+      controller: "teamwiseResults as tr",
+      templateUrl: "team-results.html"
     };
 
     $routeProvider
@@ -34,7 +34,7 @@ function footballTable(yearFifteenData, yearSixteenData) {
   this.yearSixteenData = yearSixteenData;
   this.matchdays = [];
   this.years = ["2015", "2016"];
-  this.results = [];
+  this.results = {};
 
   for (let index = 0; index < yearFifteenData.rounds.length; index++) {
     this.matchdays.push(yearFifteenData.rounds[index].name);
@@ -43,12 +43,28 @@ function footballTable(yearFifteenData, yearSixteenData) {
   this.selectedYear = this.years[0];
   this.selectedMatchday = this.matchdays[0];
 
-  this.updateMatchday = function () {
-    this.results = _.find(this.yearFifteenData.rounds, {
-      name: this.selectedMatchday
-    }).matches;
+  this.init = function(){
+    this.updateTable();
+  }.bind(this);
+
+  this.updateTable = function () {
+    this.results = {};
+    var index = _.findIndex(
+      this.yearFifteenData.rounds, 
+      function(o) 
+      { 
+        return o.name == this.selectedMatchday; 
+      }.bind(this)
+      );
+    if (this.selectedYear === "2015") 
+    {
+      this.results = this.yearFifteenData.rounds[index];  
+    }
+    else
+    {
+      this.results = this.yearSixteenData.rounds[index];
+    }
   };
-  console.log(this.results);
 }
 
 app.controller("footballTable", footballTable);
