@@ -28,10 +28,22 @@ const app = angular
         }
       }
     };
-
+    const teamResultRoute = {
+      controller:"teamResult",
+      templateUrl: "app/views/team-result.html",
+      resolve: {
+        yearFifteenData: function (footballData) {
+          return footballData.getyearFifteenData();
+        },
+        yearSixteenData: function (footballData) {
+          return footballData.getyearSixteenData();
+        }
+      }
+    }
     $routeProvider
       .when("/matchday", matchdayRoute)
       .when("/teamwise", teamwiseRoute)
+      .when("/:team",teamResultRoute)
       .otherwise("/", {
         templateUrl: "index.html"
       });
@@ -78,6 +90,8 @@ function footballTable(yearFifteenData, yearSixteenData) {
 function teamwiseResults(yearFifteenData,yearSixteenData) {
   this.yearFifteenTeams = [];
   this.yearSixteenTeams = [];
+  this.toggleFifteen = false;
+  this.toggleSixteen = false;
   this.init = function() {
     for (
       let index = 0;
@@ -96,9 +110,21 @@ function teamwiseResults(yearFifteenData,yearSixteenData) {
       this.yearSixteenTeams.push(
         yearSixteenData.rounds[0].matches[index].team2.name
       );
-    }  
+    }
   };
+
 }
 
+function teamResult($routeParams,yearFifteenData,yearSixteenData) {
+  this.yearFifteenData = yearFifteenData;
+  this.yearSixteenData = yearSixteenData;
+  for (let index = 0; index < this.yearFifteenData.rounds.length; index++) {
+    for(let j = 0; j<yearFifteenData.rounds[index].length; j++){
+      
+    }
+  }
+  console.log(this.yearFifteenData.rounds);
+}
 app.controller("footballTable", footballTable);
 app.controller("teamwiseResults",teamwiseResults);
+app.controller("teamResult",teamResult);

@@ -1,3 +1,18 @@
 <div class="container" ng-init="tr.init();">
-    <input type="text" name="teamName">
+    <button ng-click="tr.toggleFifteen = !tr.toggleFifteen; tr.toggleSixteen = false;">Premier League 2015</button>
+    <button ng-click="tr.toggleSixteen = !tr.toggleSixteen; tr.toggleFifteen = false;">Premier League 2016</button>
+    <div ng-if="tr.toggleFifteen">
+            <input type="text" name="teamName" ng-model="teamName">
+        <ul style="list-style:none;">
+            <li ng-repeat="team in tr.yearFifteenTeams|filter:teamName"><a href="#!/{{team}}">{{team}}</a></li>
+        </ul>
+        
+        
+    </div>   
+    <div ng-if="tr.toggleSixteen">
+        <input type="text" name="teamName" ng-model="teamName">
+        <ul style="list-style:none;">
+           <li ng-repeat="team in tr.yearSixteenTeams|filter:teamName"><a href="#!/{{team}}">{{team}}</a></li>
+        </ul>
+    </div>
 </div>
