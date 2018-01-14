@@ -118,13 +118,64 @@ function teamwiseResults(yearFifteenData,yearSixteenData) {
 function teamResult($routeParams,yearFifteenData,yearSixteenData) {
   this.yearFifteenData = yearFifteenData;
   this.yearSixteenData = yearSixteenData;
+  this.collectiveResults = [];
+  this.team = {
+    name:$routeParams.team,
+    results: []
+  };
+  console.log();
   for (let index = 0; index < this.yearFifteenData.rounds.length; index++) {
-    for(let j = 0; j<this.yearFifteenData.rounds[index].length; j++){
+    for(let j = 0; j<this.yearFifteenData.rounds[index].matches.length; j++){
+      var temp_obj = _.pick(this.yearFifteenData.rounds[index].matches[j],["team1","team2"]);
       
+      
+      if(temp_obj.team1.name == $routeParams.team)
+      {
+
+          var result_decision = ()=>{
+            if(this.yearFifteenData.rounds[index].matches[j].score1 > this.yearFifteenData.rounds[index].matches[j].score2){
+              return "W";
+            }
+            else if (this.yearFifteenData.rounds[index].matches[j].score1 == this.yearFifteenData.rounds[index].matches[j].score2) {
+              return "D";
+            }
+            else{
+              return "L";
+            }
+          };
+          var obj = {
+            opponent : temp_obj.team2.name,
+            score:this.yearFifteenData.rounds[index].matches[j].score1+"-"+this.yearFifteenData.rounds[index].matches[j].score2,
+            result: result_decision()
+          };
+          this.team.results.push(obj);
+      }
+      else if (temp_obj.team2.name === $routeParams.team) {
+        var result_decision = ()=>{
+          if(this.yearFifteenData.rounds[index].matches[j].score1 > this.yearFifteenData.rounds[index].matches[j].score2){
+            return "W";
+          }
+          else if (this.yearFifteenData.rounds[index].matches[j].score1 == this.yearFifteenData.rounds[index].matches[j].score2) {
+            return "D";
+          }
+          else{
+            return "L";
+          }
+        };
+        var obj = {
+          opponent : temp_obj.team1.name,
+          score:this.yearFifteenData.rounds[index].matches[j].score1+"-"+this.yearFifteenData.rounds[index].matches[j].score2,
+          result: result_decision()
+        };
+        this.team.results.push(obj);
+      }
+   
     }
   }
-  console.log(this.yearFifteenData.rounds);
+  
+  console.log(this.team);
 }
+
 app.controller("footballTable", footballTable);
 app.controller("teamwiseResults",teamwiseResults);
 app.controller("teamResult",teamResult);
