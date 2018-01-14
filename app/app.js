@@ -39,7 +39,7 @@ const app = angular
           return footballData.getyearSixteenData();
         }
       }
-    }
+    };
     $routeProvider
       .when("/matchday", matchdayRoute)
       .when("/teamwise", teamwiseRoute)
