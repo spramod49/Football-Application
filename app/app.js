@@ -119,7 +119,7 @@ function teamResult($routeParams,yearFifteenData,yearSixteenData) {
   this.yearFifteenData = yearFifteenData;
   this.yearSixteenData = yearSixteenData;
   for (let index = 0; index < this.yearFifteenData.rounds.length; index++) {
-    for(let j = 0; j<yearFifteenData.rounds[index].length; j++){
+    for(let j = 0; j<this.yearFifteenData.rounds[index].length; j++){
       
     }
   }
