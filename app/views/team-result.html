@@ -1,4 +1,32 @@
 <div class="container">
     <a href="#!/teamwise">Back</a>
+    <div>
+        {{tr.team.name}} has achieved a total of {{tr.games.points}} points this season.
+    </div>
+    <button ng-click="tr.showStatistics = !tr.showStatistics;">Show/Hide Statistics</button>
+    <button ng-click="tr.showGames = !tr.showGames;">Show/Hide Games</button>
+    <div ng-show="tr.showStatistics">
+        <p>Games won: {{tr.games.won}} Win % {{(tr.games.won/38)*100 | number:0}}</p>
+        <p>Games drawn: {{tr.games.draw}} Draw % {{(tr.games.draw/38)*100| number:0}}</p>
+        <p>Games lost: {{tr.games.lost}} Loss % {{(tr.games.lost/38)*100| number:0}}</p> 
+    </div>
+    
+    <div ng-show="tr.showGames">
+            <input type="text" ng-model="team">
+            <table>
+                <thead>
+                    <th>Opponent</th>
+                    <th>score</th>
+                    <th>Home/Away</th>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="game in tr.team.results|filter:team">
+                        <td>{{game.opponent}}</td>
+                        <td>{{game.score}}</td>
+                        <td>{{game.location}}</td>
+                    </tr>
+                </tbody>
+            </table>    
+    </div>
     
 </div>
