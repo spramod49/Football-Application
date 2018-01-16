@@ -1,0 +1,9 @@
+.row-won{
+    background-color: green;
+}
+.row-draw{
+    background-color: gray;
+}
+.row-lost{
+    background-color: red;
+}
