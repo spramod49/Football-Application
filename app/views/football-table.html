@@ -1,28 +1,30 @@
 <div ng-init="ft.init();" class="container">
   <h1>Matches</h1>
-  <select ng-change="ft.updateTable()" name="year" id="year" ng-model="ft.selectedYear" ng-options="year for year in ft.years">
+  <select class="custom-select" ng-change="ft.updateTable()" name="year" id="year" ng-model="ft.selectedYear" ng-options="year for year in ft.years">
   </select>
-  <select name="matchday" id="matchday" ng-options="matchday for matchday in ft.matchdays" ng-model="ft.selectedMatchday"
-    ng-change="ft.updateTable();">
+  <select name="matchday" id="matchday" ng-options="matchday for matchday in ft.matchdays" ng-model="ft.selectedMatchday" ng-change="ft.updateTable();">
   </select>
   <input type="text" ng-model="teamName" style="float:left;">
-  <table class="table table-responsive">
-    <thead>
-      <tr>
-        <th>Home team</th>
-        <th>Score</th>
-        <th>Away team</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="result in ft.results.matches|filter:teamName">
-        <td>{{result.team1.name}}</td>
-        <td>
-          <strong>{{result.score1}} - {{result.score2}}</strong>
-        </td>
-        <td>{{result.team2.name}}</td>
-      </tr>
-    </tbody>
-    <tbody></tbody>
-  </table>
+  <div class="container col-md-8 col-sm-8 col-xs-6">
+    <table class=" table table-striped table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th>Home team</th>
+          <th>Score</th>
+          <th>Away team</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="result in ft.results.matches|filter:teamName ">
+          <td>{{result.team1.name}}</td>
+          <td>
+            <strong>{{result.score1}} - {{result.score2}}</strong>
+          </td>
+          <td>{{result.team2.name}}</td>
+        </tr>
+      </tbody>
+      <tbody></tbody>
+    </table>
+  </div>
+
 </div>
