@@ -1,13 +1,18 @@
 <div class="container">
 
-    <a href="#!/teamwise">Back</a>
+    <a class="anchor-button" href="#!/teamwise">Back</a>
     <div ng-if="tr.year == 15">
         <div>
             {{tr.team_fifteen.name}} has achieved a total of {{tr.games_fifteen.points}} points this season.
         </div>
-        <button ng-click="tr.showStatistics = !tr.showStatistics;">Show/Hide Statistics</button>
-        <button ng-click="tr.showGames = !tr.showGames;">Show/Hide Games</button>
+        <button class="btn btn-success" ng-click="tr.showStatistics = !tr.showStatistics;">Show/Hide Statistics</button>
+        <button class="btn btn-warning" ng-click="tr.showGames = !tr.showGames;">Show/Hide Games</button>
         <div ng-show="tr.showStatistics">
+            <div class="progress">
+                <div class="progress-bar-striped bg-success" role="progressbar" style="width: 50%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar-striped bg-warning" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar-striped bg-danger" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
             <p>Games won: {{tr.games_fifteen.won}}</p>
             <p>Games drawn: {{tr.games_fifteen.draw}} </p>
             <p>Games lost: {{tr.games_fifteen.lost}} </p>
@@ -38,8 +43,8 @@
         <div>
             {{tr.team_sixteen.name}} has achieved a total of {{tr.games_sixteen.points}} points this season.
         </div>
-        <button ng-click="tr.showStatistics = !tr.showStatistics;">Show/Hide Statistics</button>
-        <button ng-click="tr.showGames = !tr.showGames;">Show/Hide Games</button>
+        <button class="btn btn-success" ng-click="tr.showStatistics = !tr.showStatistics;">Show/Hide Statistics</button>
+        <button class="btn btn-warning" ng-click="tr.showGames = !tr.showGames;">Show/Hide Games</button>
         <div ng-show="tr.showStatistics">
             <p>Games won: {{tr.games_sixteen.won}}</p>
             <p>Games drawn: {{tr.games_sixteen.draw}} </p>

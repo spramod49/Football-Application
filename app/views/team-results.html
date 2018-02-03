@@ -1,22 +1,35 @@
 <div class="container" ng-init="tr.init();">
-    <button ng-click="tr.toggleFifteen = !tr.toggleFifteen; tr.toggleSixteen = false; tr.yearButtonClicked(15)">Premier League 2015</button>
-    <button ng-click="tr.toggleSixteen = !tr.toggleSixteen; tr.toggleFifteen = false; tr.yearButtonClicked(16)">Premier League 2016</button>
-    <div ng-if="tr.toggleFifteen">
-        <input type="text" name="teamName" ng-model="teamName">
-        <ul style="list-style:none;">
-            <li ng-repeat="team in tr.yearFifteenTeams|filter:teamName">
-                <a href="#!/{{team}}">{{team}}</a>
-            </li>
-        </ul>
-
-
+    <div class="row top-buffer">
+        <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12 top-buffer">
+            <button name="yearFifteen" class="btn btn-info" ng-click="tr.toggleFifteen = !tr.toggleFifteen; tr.toggleSixteen = false; tr.yearButtonClicked(15)">Premier League 2015</button>
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12 top-buffer">
+            <button class="btn btn-info" name="yearSixteen" ng-click="tr.toggleSixteen = !tr.toggleSixteen; tr.toggleFifteen = false; tr.yearButtonClicked(16)">Premier League 2016</button>
+        </div>
     </div>
-    <div ng-if="tr.toggleSixteen">
-        <input type="text" name="teamName" ng-model="teamName">
-        <ul style="list-style:none;">
-            <li ng-repeat="team in tr.yearSixteenTeams|filter:teamName">
-                <a href="#!/{{team}}">{{team}}</a>
-            </li>
-        </ul>
+    <div ng-if="tr.toggleFifteen" class="row top-buffer">
+        <div class="col-md-3">
+            <input class="form-control top-buffer" placeholder="Search team" type="text" name="teamName" ng-model="teamName">
+        </div>
+        <div class="col-md-9 top-buffer">
+            <ul class="list-group" style="list-style:none;">
+                <li class="list-group-item" ng-repeat="team in tr.yearFifteenTeams|filter:teamName">
+                    <a style="text-decoration:none;" href="#!/{{team}}">{{team}}</a>
+                </li>
+            </ul>
+        </div>
     </div>
+    <div ng-if="tr.toggleSixteen" class="row top-buffer">
+        <div class="col-md-3">
+            <input class="form-control top-buffer" placeholder="Search team" type="text" name="teamName" ng-model="teamName">
+        </div>
+        <div class="col-md-9 top-buffer">
+            <ul class="list-group" style="list-style:none;">
+                <li class="list-group-item" ng-repeat="team in tr.yearSixteenTeams|filter:teamName">
+                    <a style="text-decoration:none;" href="#!/{{team}}">{{team}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
 </div>

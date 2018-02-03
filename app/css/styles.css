@@ -1,9 +1,27 @@
-.row-won{
-    background-color: green;
+.row-won {
+  background-color: green;
 }
-.row-draw{
-    background-color: gray;
+.row-draw {
+  background-color: gray;
 }
-.row-lost{
-    background-color: red;
+.row-lost {
+  background-color: red;
+}
+.top-buffer {
+  margin-top: 20px;
+}
+
+.anchor-button {
+  background-color: rgb(76, 142, 145);
+  border-radius: 5px;
+  color: white;
+  padding: 0.5em;
+  text-decoration: none;
+}
+.anchor-button:hover {
+  background-color: rgb(76, 142, 145);
+  border-radius: 5px;
+  color: white;
+  padding: 0.5em;
+  text-decoration: none;
 }
