@@ -26,9 +26,6 @@ const app = angular
         yearSixteenData: function(footballData) {
           return footballData.getyearSixteenData();
         }
-        // teamWiseYear: function(teamWiseYear) {
-        //   return teamWiseYear.yearClicked;
-        // }
       }
     };
     const teamResultRoute = {
@@ -43,11 +40,17 @@ const app = angular
         }
       }
     };
+
+    const homePage = {
+      controller: "homePage as hp",
+      templateUrl: "app/views/home.html"
+    };
     $routeProvider
       .when("/matchday", matchdayRoute)
       .when("/teamwise", teamwiseRoute)
-      .when("/:team", teamResultRoute)
-      .otherwise("/", {
+      .when("/teamwise/:team", teamResultRoute)
+      .when("/home", homePage)
+      .otherwise("/home", {
         templateUrl: "index.html"
       });
   });
@@ -315,7 +318,24 @@ function teamResult(
     this.games_sixteen.won * 3 + this.games_sixteen.draw * 1;
   this.showStatistics = false;
   this.showGames_fifteen = false;
-  console.log(this.team_sixteen.results);
+  this.progressBarWon_fifteen = {
+    width: this.games_fifteen.won / 38 * 100 + "%"
+  };
+  this.progressBarDraw_fifteen = {
+    width: this.games_fifteen.draw / 38 * 100 + "%"
+  };
+  this.progressBarLost_fifteen = {
+    width: this.games_fifteen.lost / 38 * 100 + "%"
+  };
+  this.progressBarWon_sixteen = {
+    width: this.games_sixteen.won / 38 * 100 + "%"
+  };
+  this.progressBarDraw_sixteen = {
+    width: this.games_sixteen.draw / 38 * 100 + "%"
+  };
+  this.progressBarLost_sixteen = {
+    width: this.games_sixteen.lost / 38 * 100 + "%"
+  };
 }
 function teamWiseYear() {
   this.yearClicked;

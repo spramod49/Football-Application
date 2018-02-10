@@ -1,76 +1,92 @@
 <div class="container">
-
-    <a class="anchor-button" href="#!/teamwise">Back</a>
+    <div class="row top-buffer">
+        <div class="col-md-2">
+            <a class="anchor-button" href="#!/teamwise">Back</a>
+        </div>
+    </div>
     <div ng-if="tr.year == 15">
-        <div>
-            {{tr.team_fifteen.name}} has achieved a total of {{tr.games_fifteen.points}} points this season.
-        </div>
-        <button class="btn btn-success" ng-click="tr.showStatistics = !tr.showStatistics;">Show/Hide Statistics</button>
-        <button class="btn btn-warning" ng-click="tr.showGames = !tr.showGames;">Show/Hide Games</button>
-        <div ng-show="tr.showStatistics">
-            <div class="progress">
-                <div class="progress-bar-striped bg-success" role="progressbar" style="width: 50%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-                <div class="progress-bar-striped bg-warning" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-                <div class="progress-bar-striped bg-danger" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+        <div class="row top-buffer">
+            <div class="col-md-12 text-center">
+                <button class="btn btn-success col-md-4" ng-click="tr.showStatistics = !tr.showStatistics;">Show/Hide Statistics</button>
+                <button class="btn btn-warning col-md-4" ng-click="tr.showGames = !tr.showGames;">Show/Hide Games</button>
             </div>
-            <p>Games won: {{tr.games_fifteen.won}}</p>
-            <p>Games drawn: {{tr.games_fifteen.draw}} </p>
-            <p>Games lost: {{tr.games_fifteen.lost}} </p>
-            <p> Win percent = {{(tr.games_fifteen.won/38)*100 | number:0}}%</p>
-            <p>Draw percent = {{(tr.games_fifteen.draw/38)*100| number:0}}%</p>
-            <p>Loss percent = {{(tr.games_fifteen.lost/38)*100| number:0}}%</p>
         </div>
-
-        <div ng-show="tr.showGames">
-            <input type="text" ng-model="team">
-            <table>
-                <thead>
-                    <th>Opponent</th>
-                    <th>score</th>
-                    <th>Home/Away</th>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="game in tr.team_fifteen.results|filter:team" ng-class="game.result == 'W' ? 'row-won' : (game.result == 'D' ? 'row-draw' : 'row-lost')">
-                        <td>{{game.opponent}}</td>
-                        <td>{{game.score}}</td>
-                        <td>{{game.location}}</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="row top-buffer">
+            <div class="col-md-4">
+                <div ng-show="tr.showStatistics">
+                    <p class="text-left font-weight-bold font-italic">{{tr.team_fifteen.name}} has achieved a total of {{tr.games_fifteen.points}} points this season.</p>
+                    <p>Games won: {{tr.games_fifteen.won}}</p>
+                    <p>Games drawn: {{tr.games_fifteen.draw}} </p>
+                    <p>Games lost: {{tr.games_fifteen.lost}} </p>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped bg-success" ng-style="tr.progressBarWon_fifteen">{{(tr.games_fifteen.won/38)*100 | number:0}}%</div>
+                        <div class="progress-bar progress-bar-striped bg-warning" ng-style="tr.progressBarDraw_fifteen">{{(tr.games_fifteen.draw/38)*100 | number:0}}%</div>
+                        <div class="progress-bar progress-bar-striped bg-danger" ng-style="tr.progressBarLost_fifteen">{{(tr.games_fifteen.lost/38)*100 | number:0}}%</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div ng-show="tr.showGames">
+                    <input placeholder="Search team result..." class="form-control col-md-12" type="text" ng-model="team">
+                    <table class="table">
+                        <thead>
+                            <th>OPPONENT</th>
+                            <th>SCORE</th>
+                            <th>HOME/AWAY</th>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="game in tr.team_fifteen.results|filter:team" ng-class="game.result == 'W' ? 'row-won' : (game.result == 'D' ? 'row-draw' : 'row-lost')">
+                                <td>{{game.opponent}}</td>
+                                <td>{{game.score}}</td>
+                                <td>{{game.location}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
     <div ng-if="tr.year == 16">
-        <div>
-            {{tr.team_sixteen.name}} has achieved a total of {{tr.games_sixteen.points}} points this season.
+        <div class="row top-buffer">
+            <div class="col-md-12 text-center">
+                <button class="btn btn-success col-md-4" ng-click="tr.showStatistics = !tr.showStatistics;">Show/Hide Statistics</button>
+                <button class="btn btn-warning col-md-4" ng-click="tr.showGames = !tr.showGames;">Show/Hide Games</button>
+            </div>
         </div>
-        <button class="btn btn-success" ng-click="tr.showStatistics = !tr.showStatistics;">Show/Hide Statistics</button>
-        <button class="btn btn-warning" ng-click="tr.showGames = !tr.showGames;">Show/Hide Games</button>
-        <div ng-show="tr.showStatistics">
-            <p>Games won: {{tr.games_sixteen.won}}</p>
-            <p>Games drawn: {{tr.games_sixteen.draw}} </p>
-            <p>Games lost: {{tr.games_sixteen.lost}} </p>
-            <p> Win percent = {{(tr.games_sixteen.won/38)*100 | number:0}}%</p>
-            <p>Draw percent = {{(tr.games_sixteen.draw/38)*100| number:0}}%</p>
-            <p>Loss percent = {{(tr.games_sixteen.lost/38)*100| number:0}}%</p>
+        <div class="row top-buffer">
+            <div class="col-md-4 top-buffer">
+                <div ng-show="tr.showStatistics">
+                    <p class="text-left font-weight-bold font-italic">{{tr.team_sixteen.name}} has achieved a total of {{tr.games_sixteen.points}} points this season.</p>
+                    <p>Games won: {{tr.games_sixteen.won}}</p>
+                    <p>Games drawn: {{tr.games_sixteen.draw}} </p>
+                    <p>Games lost: {{tr.games_sixteen.lost}} </p>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped bg-success" ng-style="tr.progressBarWon_sixteen">{{(tr.games_sixteen.won/38)*100 | number:0}}%</div>
+                        <div class="progress-bar progress-bar-striped bg-warning" ng-style="tr.progressBarDraw_sixteen">{{(tr.games_sixteen.draw/38)*100 | number:0}}%</div>
+                        <div class="progress-bar progress-bar-striped bg-danger" ng-style="tr.progressBarLost_sixteen">{{(tr.games_sixteen.lost/38)*100 | number:0}}%</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 top-buffer">
+                <div ng-show="tr.showGames">
+                    <input placeholder="Search team result..." class="form-control col-md-12" type="text" ng-model="team">
+                    <table class="table">
+                        <thead>
+                            <th>OPPONENT</th>
+                            <th>SCORE</th>
+                            <th>HOME/AWAY</th>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="game in tr.team_sixteen.results|filter:team" ng-class="game.result == 'W' ? 'row-won' : (game.result == 'D' ? 'row-draw' : 'row-lost')">
+                                <td>{{game.opponent}}</td>
+                                <td>{{game.score}}</td>
+                                <td>{{game.location}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
 
-        <div ng-show="tr.showGames">
-            <input type="text" ng-model="team">
-            <table>
-                <thead>
-                    <th>Opponent</th>
-                    <th>score</th>
-                    <th>Home/Away</th>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="game in tr.team_sixteen.results|filter:team" ng-class="game.result == 'W' ? 'row-won' : (game.result == 'D' ? 'row-draw' : 'row-lost')">
-                        <td>{{game.opponent}}</td>
-                        <td>{{game.score}}</td>
-                        <td>{{game.location}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
     </div>
-
 </div>

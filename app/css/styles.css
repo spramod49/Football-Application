@@ -1,14 +1,36 @@
 .row-won {
   background-color: green;
 }
+
 .row-draw {
   background-color: gray;
 }
+
 .row-lost {
   background-color: red;
 }
+
 .top-buffer {
   margin-top: 20px;
+}
+
+.down-buffer {
+  margin-bottom: 20px;
+}
+
+body {
+  background: #76b852;
+  background: -webkit-linear-gradient(to right, #8DC26F, #76b852);
+  background: linear-gradient(to right, #8DC26F, #76b852);
+}
+
+.wrapper {
+  padding-top: 40vh;
+  text-align: center;
+}
+
+.button {
+  top: 50%;
 }
 
 .anchor-button {
@@ -18,6 +40,7 @@
   padding: 0.5em;
   text-decoration: none;
 }
+
 .anchor-button:hover {
   background-color: rgb(76, 142, 145);
   border-radius: 5px;
